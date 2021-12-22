@@ -5,7 +5,6 @@ from multiprocessing import Pool
 from pathlib import Path
 from subprocess import check_call
 import os
-import re
 
 
 def generate_blog_posts():
@@ -25,18 +24,16 @@ class BlogFormatter:
 
     @staticmethod
     def _fill_in(files: list) -> dict:
-        prev = {}
+        d = {}
         prev_file = None
         for file in files:
-            prev[file] = prev_file
+            d[file] = prev_file
             prev_file = file
-        return prev
+        return d
 
     def format_blog(self, in_file: Path):
         os.chdir(in_file.parent)
-        markdown_suffix_re = re.compile(r'\.md$')
-        assert markdown_suffix_re.search(f'{in_file}')
-        out_file = 'out/' + markdown_suffix_re.sub('.html', in_file.name)
+        out_file = 'out/' + self._html_suffix(in_file)
         cmd = f'(cat {in_file.name}; echo "{self._get_links(in_file)}"; cat common/footer.md) | pandoc -o {out_file}'
         check_call(cmd, shell=True)
 
@@ -50,8 +47,7 @@ class BlogFormatter:
 
     @staticmethod
     def _html_suffix(in_file: Path) -> str:
-        md_re = re.compile(r'\.md$')
-        return md_re.sub('.html', f'{in_file.name}')
+        return in_file.name.removesuffix('.md') + '.html'
 
 
 if __name__ == '__main__':
