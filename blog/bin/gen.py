@@ -3,12 +3,15 @@
 # Copyright 2021 John Hanley. MIT licensed.
 from multiprocessing import Pool
 from pathlib import Path
-from subprocess import check_call
+from subprocess import check_output
 import os
+
+from bs4 import BeautifulSoup
 
 
 def generate_blog_posts():
     bf = BlogFormatter()
+    bf.toc()
     with Pool() as p:
         p.map(bf.format_blog, bf.files)
 
@@ -31,11 +34,32 @@ class BlogFormatter:
             prev_file = file
         return d
 
+    def toc(self):
+        """Table of contents"""
+        blog_dir = self.files[0].parent
+        html = ('<!DOCTYPE html>\n<html lang="en"><head><title>soft-eng.info TOC</head>'
+                '<body><h1>soft-eng.info</h1><ul>')
+        for file in self.files:
+            html += f'<li>{self._href(self._html_suffix(file), file.name)}</li>'
+        with open(blog_dir / 'out/index.html', 'w') as fout:
+            soup = BeautifulSoup(html, 'html.parser')
+            fout.write(soup.prettify() + '\n')
+
+    @staticmethod
+    def _href(url, name):
+        return f'<a href="{url}">{name}</a>'
+
     def format_blog(self, in_file: Path):
         os.chdir(in_file.parent)
         out_file = 'out/' + self._html_suffix(in_file)
-        cmd = f'(cat {in_file.name}; echo "{self._get_links(in_file)}"; cat common/footer.md) | pandoc -o {out_file}'
-        check_call(cmd, shell=True)
+        title = in_file.name.removesuffix('.md')
+        cmd = (f'''(echo '<html lang="en"><head><title>{title}</title></head><body>';'''
+               f' cat {in_file.name}; echo "{self._get_links(in_file)}"; cat common/footer.md)'
+               f' | pandoc -w html')
+        html = '<!DOCTYPE html>\n' + check_output(cmd, shell=True).decode()
+        with open(out_file, 'w') as fout:
+            soup = BeautifulSoup(html, 'html.parser')
+            fout.write(soup.prettify() + '\n')
 
     def _get_links(self, in_file: Path):
         links = '\n\n'
