@@ -53,7 +53,10 @@ class BlogFormatter:
         os.chdir(in_file.parent)
         out_file = 'out/' + self._html_suffix(in_file)
         title = in_file.name.removesuffix('.md')
-        cmd = (f'''(echo '<html lang="en"><head><title>{title}</title></head><body>';'''
+        css = f'<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />'
+        css += f' <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssbase/cssbase-min.css" />'
+        css += f' <link rel="stylesheet" type="text/css" href="asset/pandoc.css" media="screen" />'
+        cmd = (f'''(echo '<html lang="en"><head><title>{title}</title>{css}</head><body>';'''
                f' cat {in_file.name}; echo "{self._get_links(in_file)}"; cat common/footer.md)'
                f' | pandoc -w html')
         html = '<!DOCTYPE html>\n' + check_output(cmd, shell=True).decode()
