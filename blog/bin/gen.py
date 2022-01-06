@@ -55,7 +55,7 @@ class BlogFormatter:
         title = in_file.name.removesuffix('.md')
         # css = f'<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />'
         # css += f' <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssbase/cssbase-min.css" />'
-        css = f' <link rel="stylesheet" type="text/css" href="asset/pandoc.css" media="screen" />'
+        css = f' <link rel="stylesheet" type="text/css" href="asset/pandoc.min.css" media="screen" />'
         cmd = (f'''(echo '<html lang="en"><head><title>{title}</title>{css}</head><body>';'''
                f' cat {in_file.name}; echo "{self._get_links(in_file)}"; cat common/footer.md)'
                f' | pandoc -w html')
