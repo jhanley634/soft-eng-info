@@ -39,7 +39,7 @@ class BlogFormatter:
         blog_dir = self.files[0].parent
         html = ('<!DOCTYPE html>\n<html lang="en"><head><title>soft-eng.info TOC</head>'
                 '<body><h1>soft-eng.info</h1><ul>')
-        for file in self.files:
+        for file in reversed(self.files):
             html += f'<li>{self._href(self._html_suffix(file), file.name)}</li>'
         with open(blog_dir / 'out/index.html', 'w') as fout:
             soup = BeautifulSoup(html, 'html.parser')
