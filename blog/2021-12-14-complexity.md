@@ -8,7 +8,7 @@ is to control Complexity.
 [Aho et al.](https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools)
 had it exactly right:
 
-![](asset/dragon_book.jpg){height=3cm}
+![](asset/2021-12-14/dragon_book.jpg){height=300px}
 
 We do battle with the dragon of complexity every day.
 

@@ -58,7 +58,7 @@ employer. I want to follow the rules, but I want them to be rules I can follow.
 The currently proposed draft language poses certain difficulties.
 But drafts can always be edited.
 
-# example language
+## example language
 
 1. Purpose of Agreement
 ... As used in this Agreement, “Inventions” means inventions, improvements,
