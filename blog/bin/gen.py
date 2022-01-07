@@ -37,7 +37,9 @@ class BlogFormatter:
     def toc(self):
         """Table of contents"""
         blog_dir = self.files[0].parent
-        html = ('<!DOCTYPE html>\n<html lang="en"><head><title>soft-eng.info TOC</head>'
+        html = ('<!DOCTYPE html>\n<html lang="en"><head>'
+                '<link rel="stylesheet" type="text/css" href="/blog/asset/pandoc.min.css">'
+                '<title>soft-eng.info TOC</head>'
                 '<body><h1>soft-eng.info</h1><ul>')
         for file in reversed(self.files):
             html += f'<li>{self._href(self._html_suffix(file), file.name)}</li>'
@@ -53,9 +55,9 @@ class BlogFormatter:
         os.chdir(in_file.parent)
         out_file = 'out/' + self._html_suffix(in_file)
         title = in_file.name.removesuffix('.md')
-        # css = f'<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />'
-        # css += f' <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssbase/cssbase-min.css" />'
-        css = f' <link rel="stylesheet" type="text/css" href="asset/pandoc.min.css" media="screen" />'
+        # css = f'<link rel="stylesheet"   href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />'
+        # css += f' <link rel="stylesheet" href="http://yui.yahooapis.com/3.18.1/build/cssbase/cssbase-min.css" />'
+        css = ' <link rel="stylesheet" type="text/css" href="asset/pandoc.min.css" media="screen" />'
         cmd = (f'''(echo '<html lang="en"><head><title>{title}</title>{css}</head><body>';'''
                f' cat {in_file.name}; echo "{self._get_links(in_file)}"; cat common/footer.md)'
                f' | pandoc -w html')
