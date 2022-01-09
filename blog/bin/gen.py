@@ -42,7 +42,8 @@ class BlogFormatter:
                 '<title>soft-eng.info TOC</head>'
                 '<body><h1>soft-eng.info</h1><ul>')
         for file in reversed(self.files):
-            html += f'<li>{self._href(self._html_suffix(file), file.name)}</li>'
+            title = self._no_suffix(file)
+            html += f'<li>{self._href(title, title)}</li>'
         with open(blog_dir / 'out/index.html', 'w') as fout:
             soup = BeautifulSoup(html, 'html.parser')
             fout.write(soup.prettify() + '\n')
@@ -54,7 +55,7 @@ class BlogFormatter:
     def format_blog(self, in_file: Path):
         os.chdir(in_file.parent)
         out_file = 'out/' + self._html_suffix(in_file)
-        title = in_file.name.removesuffix('.md')
+        title = self._no_suffix(in_file)
         # css = f'<link rel="stylesheet"   href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />'
         # css += f' <link rel="stylesheet" href="http://yui.yahooapis.com/3.18.1/build/cssbase/cssbase-min.css" />'
         css = ' <link rel="stylesheet" type="text/css" href="asset/pandoc.min.css" media="screen" />'
@@ -69,14 +70,18 @@ class BlogFormatter:
     def _get_links(self, in_file: Path):
         links = '\n\n'
         if self.prev[in_file]:
-            links += f'[prev]({self._html_suffix(self.prev[in_file])})\n'
+            links += f'[prev]({self._no_suffix(self.prev[in_file])})\n'
         if self.next[in_file]:
-            links += f'[next]({self._html_suffix(self.next[in_file])})\n'
+            links += f'[next]({self._no_suffix(self.next[in_file])})\n'
         return links
 
     @staticmethod
-    def _html_suffix(in_file: Path) -> str:
-        return in_file.name.removesuffix('.md') + '.html'
+    def _no_suffix(in_file: Path) -> str:
+        return in_file.name.removesuffix('.md')
+
+    @classmethod
+    def _html_suffix(cls, in_file: Path) -> str:
+        return cls._no_suffix(in_file) + '.html'
 
 
 if __name__ == '__main__':

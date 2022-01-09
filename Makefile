@@ -1,8 +1,15 @@
 
 OUT = blog/asset/pandoc.min.css
 
+SHELL := bash
+
+# Eventually a penultimate entry will be in need of a pair of prev/next links.
+CACHE_INVALIDATE = grep -L '^    next' blog/out/20*.html
+
 all: $(OUT)
+	rm $(shell $(CACHE_INVALIDATE))
 	blog/bin/gen.py
+	rsync -av blog/{asset,out/*.html} speedy1.sector6.net:/var/www/html/soft-eng.info/blog/
 
 %.min.css: %.css
 	minify $<  > $@
