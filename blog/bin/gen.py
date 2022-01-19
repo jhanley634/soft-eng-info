@@ -54,7 +54,10 @@ class BlogFormatter:
 
     def format_blog(self, in_file: Path):
         os.chdir(in_file.parent)
-        out_file = 'out/' + self._html_suffix(in_file)
+        out_file = Path('out/') / self._html_suffix(in_file)
+        if (out_file.exists()
+                and out_file.stat().st_mtime > in_file.stat().st_mtime):
+            return  # Similar to `make`, we avoid rebuilding what is already in sync.
         title = self._no_suffix(in_file)
         # css = f'<link rel="stylesheet"   href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />'
         # css += f' <link rel="stylesheet" href="http://yui.yahooapis.com/3.18.1/build/cssbase/cssbase-min.css" />'
