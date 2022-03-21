@@ -1,4 +1,5 @@
 *.min.css
+*~
 .coverage
 .idea/
 __pycache__/

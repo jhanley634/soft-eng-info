@@ -1,6 +1,8 @@
 
 # stuck postgres lock
 
+![stuck in a lock](asset/2021-12-19/first-lock.jpg)
+
 Relational databases are great, they offer ACID promises:
 
 - atomic

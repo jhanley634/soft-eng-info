@@ -3,6 +3,8 @@
 
 Don't do it.
 
+![copy-n-paste](asset/2022-01-22/copy-pasta.jpg)
+
 Just don't. Once you see the same code appear three or four times,
 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 it up. Name the concept, find the parameters, call that new helper a few times.
