@@ -3,6 +3,8 @@
 
 Use a mapping where appropriate, rather than a giant `if` or `case` statement.
 
+![dict](https://live.staticflickr.com/2143/2288333808_d86e0693db_m_d.jpg){ width=240 height=180 }
+
 I continue to see this again and again in production code, in many languages.
 Often we're dealing with `Enum` and a more complex task than spelling numbers.
 
@@ -44,3 +46,7 @@ the function rather than its evaluation.
             'no file': FileNotFoundError,
             'CTRL/C': InterruptedError,
         }
+
+----
+
+(Image credit: [torisan3500](https://www.flickr.com/photos/torisan3500/2288333808/sizes/s/))

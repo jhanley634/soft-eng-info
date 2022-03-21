@@ -5,6 +5,8 @@ When writing a library routine that clients will call,
 there is often a temptation to specify method
 arguments that will make your life easier.
 
+![multiple callers](https://live.staticflickr.com/279/19636282482_9f39f2c404_m_d.jpg){ width=240 height=160 }
+
 You're writing the implementation,
 you know exactly what values it's going to to need.
 So just throw them in the signature and we're done, right?
@@ -161,3 +163,5 @@ use that!
 Accept it as criticism of the current API,
 and offer a revised API that has fewer warts.
 Your callers will thank you.
+
+(Image credit: [Richard Leeming](https://www.flickr.com/photos/dickdotcom/19636282482/sizes/s/))

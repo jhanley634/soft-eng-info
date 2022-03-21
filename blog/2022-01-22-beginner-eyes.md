@@ -8,6 +8,10 @@ Or at least do it properly, do it thoroughly.
 After that, the work is in the back of my head already,
 I'm sort of in the author's shoes.
 
+<!-- absolute beginners -->
+![](https://img.spacergif.org/v1/120x240//spacer.png){ width=300px height=100px }
+![](https://media.baselineresearch.com/images/142802/142802_full.jpg){width=71 height=100}
+
 It is _hard_ to adequately proofread your own work.
 You already "know" the ideas it conveys, or think you do.
 You might read "the the" without noticing the typo because

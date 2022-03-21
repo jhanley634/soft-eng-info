@@ -3,6 +3,10 @@
 
 The topic here is, "who owns what I write on my own time?"
 
+![](https://img.spacergif.org/v1/120x240//spacer.png){ width=120px height=240px }
+![watercolor](https://live.staticflickr.com/4124/5009366792_011761c8c5_m_d.jpg){ width=183px height=240px }
+![groceries](https://live.staticflickr.com/6098/6258799885_aeee0a448d_m_d.jpg){ width=161px height=240px }</div>
+
 Some curious legal language seems to be making the rounds in Silicon Valley.
 I have seen multiple prospective employers using it.
 The details are very different from the IP agreement that currently binds me,
@@ -90,3 +94,8 @@ I understand that the Assigned Inventions will not include,
 and the provisions of this Agreement requiring assignment of inventions to the Company
 do not apply to, any invention that qualifies fully for exclusion under
 the provisions of Section 2870 of the California Labor Code, ....
+
+----
+(Image credits:
+[ambees](https://www.flickr.com/photos/26317185@N04/5009366792/sizes/l/),
+[MStewartPhotography](https://www.flickr.com/photos/mstewartphotography/6258799885/sizes/l/))
