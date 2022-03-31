@@ -34,11 +34,14 @@ class BlogFormatter:
             prev_file = file
         return d
 
+    viewport = ' <meta name="viewport" content="width=device-width, initial-scale=1"> '
+
     def toc(self):
         """Table of contents"""
         blog_dir = self.files[0].parent
         html = ('<!DOCTYPE html>\n<html lang="en"><head>'
                 '<link rel="stylesheet" type="text/css" href="/blog/asset/pandoc.min.css">'
+                f'{self.viewport}<meta name="description" content="soft-eng.info TOC"'
                 '<title>soft-eng.info TOC</head>'
                 '<body><h1>soft-eng.info</h1><ul>')
         for file in reversed(self.files):
@@ -62,7 +65,8 @@ class BlogFormatter:
         # css = f'<link rel="stylesheet"   href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />'
         # css += f' <link rel="stylesheet" href="http://yui.yahooapis.com/3.18.1/build/cssbase/cssbase-min.css" />'
         css = ' <link rel="stylesheet" type="text/css" href="asset/pandoc.min.css" media="screen" />'
-        cmd = (f'''(echo '<html lang="en"><head><title>{title}</title>{css}</head><body>';'''
+        desc = f'<meta name="description" content="{title}">'
+        cmd = (f'''(echo '<html lang="en"><head><title>{title}</title>{desc}{self.viewport}{css}</head><body>';'''
                f' cat {in_file.name}; echo "{self._get_links(in_file)}"; cat common/footer.md)'
                f' | pandoc -w html')
         html = '<!DOCTYPE html>\n' + check_output(cmd, shell=True).decode()
