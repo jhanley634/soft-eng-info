@@ -34,7 +34,8 @@ class BlogFormatter:
             prev_file = file
         return d
 
-    viewport = ' <meta name="viewport" content="width=device-width, initial-scale=1"> '
+    viewport = (' <meta name="viewport" content="width=device-width, initial-scale=1">'
+                ' <meta name="theme-color" content="#317efb"> ')
 
     def toc(self):
         """Table of contents"""

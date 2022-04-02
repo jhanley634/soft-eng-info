@@ -8,7 +8,7 @@ tl;dr: Specify tzinfo=utc when creating a python datetime.
 
         stamp = dt.datetime(yr, mo, dy, hr, mi, sec, tzinfo=tz.utc)
 
-![reliable timekeeper](https://live.staticflickr.com/157/333622277_b19c1ba642_b.jpg)
+![reliable timekeeper](https://live.staticflickr.com/157/333622277_b19c1ba642_b.jpg){ width=1024px height=683px }
 
 ## time is continuous
 
