@@ -15,6 +15,6 @@ What just happened here?
 You got your tests "for free"!
 
 You're going to have to do this work anyway.
-Might as well produced a checked-in document at the same time,
+Might as well produce a checked-in document at the same time,
 which you or teammates can run in the months to come.
 Give it a try. I predict you'll like it.

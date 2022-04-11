@@ -7,7 +7,7 @@ SHELL := bash
 CACHE_INVALIDATE = grep -L '^    next' blog/out/20*.html
 
 all: $(OUT)
-	rm $(shell $(CACHE_INVALIDATE))
+	rm -f $(shell $(CACHE_INVALIDATE))
 	blog/bin/gen.py
 	rsync -av blog/{asset,out/*.html} speedy1.sector6.net:/var/www/html/soft-eng.info/blog/
 
