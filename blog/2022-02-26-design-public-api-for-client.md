@@ -5,7 +5,7 @@ When writing a library routine that clients will call,
 there is often a temptation to specify method
 arguments that will make your life easier.
 
-![multiple callers](https://live.staticflickr.com/279/19636282482_9f39f2c404_m_d.jpg){ width=240 height=160 }
+![multiple callers](https://web.archive.org/web/20190313071004im_/https://farm1.staticflickr.com/279/19636282482_9f39f2c404_m.jpg){ width=240 height=160 }
 
 You're writing the implementation,
 you know exactly what values it's going to to need.
