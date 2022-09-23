@@ -20,8 +20,8 @@ you add or rm it. That line of output is a friendly reminder.
 
 Oh, let me count the ways! Here are just a few.
 
-1. You're going to want to `git diff` current against recently working.
-2. You're going to want to check out a previous version.
+1. You're going to want to `git diff` current against what was recently working.
+2. You're going to want to checkout a previous version.
 3. Commits are easy to `git push`, and then you're safe from `rm -rf .`, laptop stolen from car, and other mishaps.
 4. Others can see your edit, e.g. via a slack'd github URL.
 4. You can `git blame` to reveal state-of-mind and timestamp of last edit .
@@ -49,7 +49,7 @@ I have seen people do remarkable things with source, including
 
 People do such things in good faith.
 Maybe their professor or colleagues never requested source in a particular manner.
-It's just a matter of folks approaching a situatio from different academic
+It's just a matter of folks approaching same situation from different academic
 cultures where there are different norms.
 
 ## source not planned for merging
