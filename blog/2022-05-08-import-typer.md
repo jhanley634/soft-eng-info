@@ -1,13 +1,15 @@
 
 # import typer
 
+![](https://web.archive.org/web/20190618025408if_/http://donmarquis.com/wp-content/uploads/2015/11/newyorker-archy.jpg)
+
 Once upon a time I would start each script with `import click`
 at the insistence of my friend Andy Terrel.
 And before that I would `import sys` to access `sys.argv`,
 though without the self-documenting
 automatic "`--help`" option being tacked on.
 
-But libraries evolve, and the folks who brought us click
+But libraries evolve, and the fine folks who brought us click
 have a new and improved offering:
 [typer](https://pypi.org/project/typer/).
 Use it!
@@ -15,7 +17,11 @@ Use it!
 In recent years you have probably been taking advantage of
 python's optional type annotation, leading to signatures like this:
 
-        def main(n: int, start: datetime, in_file: Path):
+        def main(
+             start: datetime,
+             in_file: Path,
+             verbose: bool = True,
+             n: int = 42):
 
 To turn such a function into a self-documenting script,
 just tack on this brief call:
@@ -26,7 +32,8 @@ just tack on this brief call:
         typer.run(main)
 
 Note we are passing in a function reference.
-Auto-complete in your IDE wants to make it `main()` -- don't
+Auto-complete in your IDE wants to make it `main()`
+with `(` `)` parens, but don't
 let it. Hand the un-evaluated `main` into `.run()`,
 so it has a chance to introspect that function's signature,
 making `--help` as helpful as possible.
@@ -62,18 +69,39 @@ with `$ conda activiate my_project`.
 
 We will typically want a 1:1 relationship between "chmod a+x"
 and "starts with shebang".
+We expect that both are present, or both are absent.
 
 ## --help
 
-And here is the `--help` output that you get "for free",
+A naïve invocation without mandatory args
+will yield the following diagnostic message.
+```
+Usage: myapp.py [OPTIONS] START:[%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]
+                IN_FILE
+Try 'myapp.py --help' for help.
+
+Error: Missing argument 'START:[%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]'.
+```
+
+<br />
+
+----
+
+<br />
+
+And here is some of the `--help` output that you get "for free",
 just because you annotated the signature.
 ```
-Usage: my_prog.py [OPTIONS] N IN_FILE
-                  START:[%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]
+Usage: myapp.py [OPTIONS] START:[%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]
+                IN_FILE
 
 Arguments:
-  N                               [required]
-  IN_FILE                         [required]
   START:[%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]
                                   [required]
+  IN_FILE                         [required]
+
+Options:
+  --verbose / --no-verbose  [default: verbose]
+  --n INTEGER               [default: 42] ...
+  --help                    Show this message and exit.
 ```
