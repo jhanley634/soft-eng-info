@@ -4,7 +4,8 @@
 Better to write source code that is clear, than obscure.
 But what does that _mean_?
 
-[![crystal clear](https://live.staticflickr.com/7361/9717711673_c57775c325.jpg)](
+[![crystal clear](https://live.staticflickr.com/7361/9717711673_c57775c325.jpg){
+width=500 height=375 }](
 https://www.flickr.com/photos/flashflood/9717711673/sizes/m/)
 
 The best operational definition I have encountered is this.

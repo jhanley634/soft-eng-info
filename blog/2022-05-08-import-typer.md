@@ -1,7 +1,7 @@
 
 # import typer
 
-![](https://web.archive.org/web/20190618025408if_/http://donmarquis.com/wp-content/uploads/2015/11/newyorker-archy.jpg)
+![Archy](asset/2022-05-08/archy.jpg){ width=571, height=300 }
 
 Once upon a time I would start each script with `import click`
 at the insistence of my friend Andy Terrel.
