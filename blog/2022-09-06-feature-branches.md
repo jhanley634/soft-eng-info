@@ -1,8 +1,8 @@
 
 # feature branches
 
-Here is how I work with feature branches.
-These are my expectations for code authored by myself or by colleagues.
+Here is how I work with feature branches,
+my expectations for code authored by myself or by colleagues.
 
 ## have a working system
 
@@ -25,10 +25,10 @@ Create .pre-commit-config.yaml so that you and your colleagues won't
 accidentally introduce such problems.
 Remember to `$ pre-commit install`.
 
-Often a top level Makefile will be as helpful as a ReadMe.
+Often a top level Makefile will be _as_ helpful as a ReadMe.
 When someone new starts interacting with the project,
 it immediately shows them the sort of commands the author
-expects will be be used with the code.
+expects will be used with the code.
 
 Most repos I work with contain some python code.
 Which motivates adding .flake8 and .isort.cfg.
@@ -36,13 +36,54 @@ Which motivates adding .flake8 and .isort.cfg.
 Create environment.yml to organize deps.
 Omit the "defaults" channel, as "conda-forge" suffices.
 Keep packages up-to-date.
-Specify version constraints with `>=`, e.g. `- python >= 3.10.4`.
+Specify version constraints with `>=`, e.g.
+
+    - python >= 3.10.4
+
 Occasionally update to 3.10.5 or whatever as you notice
 that new revs are released.
 Remember those automated tests?
 This is one reason we need them -- run tests after `conda env update`
 to verify it didn't break anything.
-Pin to downrev, e.g. `- python == 3.10.4`, if something regressed.
+Pin to downrev, e.g. `python == 3.10.4`, if something regressed.
+
+## type annotations
+
+Annotations are nice, but strictly optional.
+
+Consider using them if it makes a signature more self-documenting,
+or if it improves the usefullness of IDE auto-completion.
+
+## docstrings
+
+Docstrings are nice, but strictly optional.
+
+If you write one, begin with an English sentence.
+That means initial cap, verb, noun, final period.
+Optionally follow it with a blank line and additional text.
+
+If you feel you should describe the arguments,
+maybe you're making the right call,
+or maybe you should give an arg a more descriptive name.
+
+Sometimes "comments lie!", so avoid this.
+Better to be vague than incorrect.
+Generalizations and motivations go in the comments,
+while specifics belong in the code.
+
+If it's hard to document in a
+[single sentence](https://en.wikipedia.org/wiki/Single-responsibility_principle),
+maybe the code is telling you it wants to be
+split into multiple methods.
+
+Avoid writing "obvious" docstrings that reveal nothing
+beyond what the function signature already told us.
+The more you write, the more there is to keep in sync with changing code.
+Assume your audience can read both the docstring _and_ the code.
+
+Docstrings appear after the function signature.
+Don't insert string constants in the middle of a function body --
+instead use `#` comments where appropriate.
 
 ## edits go in a feature branch
 
@@ -51,7 +92,7 @@ But at some point you'll want to add a feature, and a branch is the
 right place for that to happen.
 
 Put the feature name in the branch name,
-plus a Jira ticket number if there is one,
+plus a Jira ticket number if applicable,
 plus maybe your initials if the project has many active contributors.
 
 WIP commits can be messy, they are just there to help the author
@@ -66,12 +107,12 @@ the feature is "too big" and might have been scoped smaller.
 
 The Jira ticket should make clear what needs to be implemented
 to consider the feature "done", either done forever
-or to close out an iteration.
+or simply to complete an iteration.
 Now that we have a working implementation,
 it is time to revisit any rough edges in the code.
 People sometimes say "we'll clean it up later",
 but that never happens. _Now_ is the time to clean the code,
-so the project won't take on an accumulating amount of technical debt.
+so the project won't keep accumulating technical debt.
 
 Push, visit the github website, and create a Pull Request.
 Feel free to do this a few days early, before it's all working
@@ -93,68 +134,11 @@ Run final tests.
 
 Now invite one or more colleagues to review.
 They approach the code with fresh eyes,
-so they will see different things that you didn't.
+so they will see things that you didn't.
 
 ### reviewer actions
 
-Cardinal rule: Be kind. Try to find nice things to say about
-the code, as well as constructive suggestions for changes.
-
-If author ignored the project's "make it lint clean" rule,
-call that out. A branch with lint errors can't merge down,
-and shouldn't even be proposed for merging.
-
-If there's a clear bug, call it out.
-Suggest a unit test that demonstrates how we're not NULL-safe or whatever.
-Cite the spec, or suggest revising the spec.
-
-If there's a six-versus-half-dozen issue,
-where we could implement one way or another and both ways "work",
-consider remaining silent.
-If each way has pros and cons, consider commenting on them
-to mentor or educate colleagues.
-The code won't change in this PR, but the discussion
-might influence coding decisions folks make in future.
-
-If coverage report shows some target code is not
-covered by automated unit test, and that would be valuable,
-call it out. Suggest a test.
-
-If you see copy-n-paste within the PR, or between `main` and PR,
-call it out, we should DRY it up. Now is the time.
-Prefer parameterizing over pasting.
-
-If you read some code which is correct but unclear, call it out.
-Maybe we need a docstring or an identifier rename,
-or the comments are out of sync with the code.
-It doesn't matter if you _eventually_ understood the code -- we
-want source code to be immediately clear and self explanatory.
-There is an iron clad rule here: "Could the intern we hire
-next summer maintain this, if the author is unavailable?"
-If that undergrad would find it difficult to properly add
-a feature or fix a bug, then we should improve the code
-prior to merging.
-
-Finally, give the PR a thumbs-up, perhaps without waiting
-to see recommend changes adopted.
-
-If author and reviewer don't see eye-to-eye on some detail,
-then author always gets the benefit of the doubt
-and should merge as-is.
-
-The PR process should not be an obstacle to getting code out the door.
-It should go quickly. If reviewers raise no concerns within 24 hours
-(one business day), then the PR is automatically approved and
-may be merged.
-
-Author does the merge -- not a reviewer.
-Author may incorporate small fixes as part of the merge.
-After merging, author should delete the feature branch.
-
-Be sure to `--squash` merge,
-as the github website UI helpfully suggests.
-Often we'll configure that as a project default,
-as well as auto-delete of the old branch.
+Follow [this advice](/blog/2022-08-18-code-review).
 
 ## deadlines
 
@@ -165,8 +149,8 @@ a given ticket into a sprint, perhaps after breaking out sub-tickets.
 
 ## release notes
 
-For many projects, `git log` offers adequate history,
-reported at the less granular level of PRs rather than raw WIP commits.
+For many projects, `$ git log` offers adequate history,
+reported at the level of PRs rather than more granular raw WIP commits.
 If customers have additional documentation needs,
 then use [SemVer](https://semver.org/),
 [conventional commits](https://simonberner.dev/cctcs),
@@ -174,20 +158,23 @@ and/or maintain a release document within the repo.
 
 Automate such release details as much as possible,
 so that it is "hard" to mess up a release,
-even if for someone new to the project.
+even for someone new to the project.
 
 ## integration
 
 Depending on project size there may be long-lived branches
 besides `main`, e.g. `develop`.
 In which case the PR process is all about merging edits into `develop`.
-Author runs the usual tests and then immediately merges to `main`
+An engineer will run the usual tests and then immediately merge to `main`
 for production deployment.
 
 Similarly, some projects may adopt a bit more ceremony,
 such as the gitflow process, without any effect on PRs.
 
 Tag each release, to facilitate rollbacks.
+
+Use [feature flags](https://en.wikipedia.org/wiki/Feature_toggle)
+where possible, to facilitate rollbacks.
 
 We try to make a separate release for each feature,
 rather than bundling several together.
