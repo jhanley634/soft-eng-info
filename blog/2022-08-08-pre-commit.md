@@ -27,7 +27,7 @@ the right thing happens.
 
 ## use
 
-Right after a `$ git clone ...`,
+Right after a `$ git clone`,
 `cd` into it and run `$ pre-commit install`
 to activate the commit hooks.
 
@@ -61,7 +61,7 @@ Linters should do reasonable things rather than get in the way.
 For routine commits and amends, which haven't been pushed to
 a central server, I want to see diffs against previous commit.
 I view it as completely reasonable that a WIP work in progress
-will have unused `import`s and unused variable definitions.
+will have unused imports and unused variable definitions.
 So I don't ask my hooks to flag such issues at commit time.
 We can worry about that later, when we're ready
 and we choose to run `mypy` or similar linters,
@@ -173,7 +173,7 @@ but it is not a good fit for storing large data files
 that frequently change, especially binary files.
 For frequent edits, git really wants to find diffs to compress them,
 and a line-oriented diff is not a good match for binary file formats.
-That includes changing images, any compressed `.gz` files, and PDFs
+That includes changing images, any compressed `.gz` files, and PDFs.
 
 After a "whoops!" addition of a giant .mp4, a `$ git rm ...`
 does not exactly make the error go away. The giant binary blob
