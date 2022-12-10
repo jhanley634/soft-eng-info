@@ -9,7 +9,7 @@ CACHE_INVALIDATE = grep -L '^    next' blog/out/20*.html
 all: $(OUT)
 	rm -f $(shell $(CACHE_INVALIDATE))
 	blog/bin/gen.py
-	rsync -av blog/{asset,out/*.html} speedy1.sector6.net:/var/www/html/soft-eng.info/blog/
+	rsync -av blog/{asset,out/*.html} speedy2.sector6.net:/var/www/html/soft-eng.info/blog/
 
 %.min.css: %.css
 	minify $<  > $@
