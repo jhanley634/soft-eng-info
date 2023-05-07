@@ -1,0 +1,6 @@
+
+User-agent: IonCrawl
+Disallow: /
+
+User-agent: *
+Allow: /
